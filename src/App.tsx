@@ -1,9 +1,101 @@
 import React from 'react';
 import { Brain, Users, TrendingUp, Shield, ArrowRight, BarChart3, Target, Award, Check, ChevronRight, MessageSquare, Clock, Zap } from 'lucide-react';
+import { motion } from 'framer-motion'; // For animations
+import Particles from 'react-tsparticles'; // For particle effects
 
 function App() {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
+    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white overflow-hidden">
+      {/* Particle Background */}
+      <Particles
+        options={{
+          particles: {
+            number: {
+              value: 80,
+              density: {
+                enable: true,
+                value_area: 800,
+              },
+            },
+            color: {
+              value: ['#3b82f6', '#1d4ed8', '#60a5fa'],
+            },
+            shape: {
+              type: 'circle',
+            },
+            opacity: {
+              value: 0.5,
+              random: true,
+              anim: {
+                enable: true,
+                speed: 1,
+                opacity_min: 0.1,
+                sync: false,
+              },
+            },
+            size: {
+              value: 3,
+              random: true,
+              anim: {
+                enable: true,
+                speed: 2,
+                size_min: 0.1,
+                sync: false,
+              },
+            },
+            line_linked: {
+              enable: true,
+              distance: 150,
+              color: '#3b82f6',
+              opacity: 0.4,
+              width: 1,
+            },
+            move: {
+              enable: true,
+              speed: 3,
+              direction: 'none',
+              random: false,
+              straight: false,
+              out_mode: 'out',
+              bounce: false,
+              attract: {
+                enable: false,
+                rotateX: 600,
+                rotateY: 1200,
+              },
+            },
+          },
+          interactivity: {
+            detect_on: 'canvas',
+            events: {
+              onhover: {
+                enable: true,
+                mode: 'bubble',
+              },
+              onclick: {
+                enable: true,
+                mode: 'push',
+              },
+              resize: true,
+            },
+            modes: {
+              bubble: {
+                distance: 200,
+                size: 6,
+                duration: 2,
+                opacity: 0.8,
+                speed: 3,
+              },
+              push: {
+                particles_nb: 4,
+              },
+            },
+          },
+          retina_detect: true,
+        }}
+        className="absolute inset-0 -z-10"
+      />
+
       {/* Navigation */}
       <nav className="fixed w-full bg-white/80 backdrop-blur-md z-50 border-b border-gray-100">
         <div className="container mx-auto px-4">
@@ -16,9 +108,13 @@ function App() {
               <a href="#features" className="text-gray-600 hover:text-blue-600 transition-colors">Features</a>
               <a href="#benefits" className="text-gray-600 hover:text-blue-600 transition-colors">Benefits</a>
               <a href="#testimonials" className="text-gray-600 hover:text-blue-600 transition-colors">Testimonials</a>
-              <button className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors"
+              >
                 Get Started
-              </button>
+              </motion.button>
             </div>
           </div>
         </div>
@@ -26,40 +122,56 @@ function App() {
 
       {/* Hero Section */}
       <header className="pt-32 pb-16 md:pt-40 md:pb-24 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-50 to-white -z-10" />
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-50 to-white -z-20" />
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
-            <div className="inline-flex items-center gap-2 bg-blue-50 px-4 py-2 rounded-full text-blue-700 mb-6">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              className="inline-flex items-center gap-2 bg-blue-50 px-4 py-2 rounded-full text-blue-700 mb-6"
+            >
               <Zap className="w-4 h-4" />
               <span className="text-sm font-medium">AI-Powered Insurance Revolution</span>
-            </div>
-            <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight">
+            </motion.div>
+            <motion.h1
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="text-4xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight"
+            >
               Transform Your Insurance with
               <span className="text-blue-600 block">Intelligent Personalization</span>
-            </h1>
-            <p className="text-xl text-gray-600 mb-8 leading-relaxed">
+            </motion.h1>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.4 }}
+              className="text-xl text-gray-600 mb-8 leading-relaxed"
+            >
               Experience the future of insurance with our AI platform that delivers hyper-personalized recommendations for every customer.
-            </p>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <button className="bg-blue-600 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-blue-700 transition-colors flex items-center gap-2 w-full sm:w-auto">
+            </motion.p>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.6 }}
+              className="flex flex-col sm:flex-row items-center justify-center gap-4"
+            >
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="bg-blue-600 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-blue-700 transition-colors flex items-center gap-2 w-full sm:w-auto"
+              >
                 Start Free Trial <ArrowRight className="w-5 h-5" />
-              </button>
-              <button className="text-gray-700 px-8 py-4 rounded-lg text-lg font-semibold hover:bg-gray-50 transition-colors flex items-center gap-2 border border-gray-200 w-full sm:w-auto">
+              </motion.button>
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="text-gray-700 px-8 py-4 rounded-lg text-lg font-semibold hover:bg-gray-50 transition-colors flex items-center gap-2 border border-gray-200 w-full sm:w-auto"
+              >
                 Watch Demo <MessageSquare className="w-5 h-5" />
-              </button>
-            </div>
-            <div className="mt-12 flex items-center justify-center gap-8 text-sm text-gray-500">
-              {[
-                { icon: <Check className="w-4 h-4 text-green-500" />, text: "No credit card required" },
-                { icon: <Clock className="w-4 h-4 text-green-500" />, text: "Setup in minutes" },
-                { icon: <Shield className="w-4 h-4 text-green-500" />, text: "Enterprise-grade security" }
-              ].map((item, index) => (
-                <div key={index} className="flex items-center gap-2">
-                  {item.icon}
-                  <span>{item.text}</span>
-                </div>
-              ))}
-            </div>
+              </motion.button>
+            </motion.div>
           </div>
         </div>
       </header>
@@ -94,7 +206,11 @@ function App() {
                 features: ["Smart Targeting", "Automated Follow-ups", "Engagement Analytics"]
               }
             ].map((feature, index) => (
-              <div key={index} className="p-8 rounded-2xl border border-gray-100 hover:shadow-xl transition-all duration-300 bg-gradient-to-b from-white to-gray-50/50">
+              <motion.div
+                key={index}
+                whileHover={{ scale: 1.05 }}
+                className="p-8 rounded-2xl border border-gray-100 hover:shadow-xl transition-all duration-300 bg-gradient-to-b from-white to-gray-50/50"
+              >
                 <div className="inline-flex items-center justify-center w-16 h-16 rounded-xl bg-blue-50 mb-6">
                   {feature.icon}
                 </div>
@@ -108,7 +224,7 @@ function App() {
                     </li>
                   ))}
                 </ul>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
@@ -130,7 +246,11 @@ function App() {
               { icon: <Award />, stat: "60%", label: "Faster Processing", sublabel: "Average Time Saved" },
               { icon: <Shield />, stat: "99.9%", label: "Platform Reliability", sublabel: "Uptime Guarantee" }
             ].map((item, index) => (
-              <div key={index} className="relative p-8 bg-white rounded-2xl shadow-sm hover:shadow-xl transition-shadow group">
+              <motion.div
+                key={index}
+                whileHover={{ scale: 1.05 }}
+                className="relative p-8 bg-white rounded-2xl shadow-sm hover:shadow-xl transition-shadow group"
+              >
                 <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-500 to-blue-600 rounded-t-2xl" />
                 <div className="inline-flex items-center justify-center w-16 h-16 bg-blue-50 rounded-xl text-blue-600 mb-6 group-hover:scale-110 transition-transform">
                   {item.icon}
@@ -138,7 +258,7 @@ function App() {
                 <div className="text-4xl font-bold text-gray-900 mb-2">{item.stat}</div>
                 <div className="text-lg font-semibold text-gray-800 mb-2">{item.label}</div>
                 <div className="text-sm text-gray-500">{item.sublabel}</div>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
@@ -174,7 +294,11 @@ function App() {
                 company: "Premier Insurance"
               }
             ].map((testimonial, index) => (
-              <div key={index} className="p-8 rounded-2xl bg-gray-50 hover:bg-gray-100 transition-colors">
+              <motion.div
+                key={index}
+                whileHover={{ scale: 1.05 }}
+                className="p-8 rounded-2xl bg-gray-50 hover:bg-gray-100 transition-colors"
+              >
                 <div className="flex items-center gap-2 mb-6">
                   {[...Array(5)].map((_, i) => (
                     <svg key={i} className="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
@@ -188,7 +312,7 @@ function App() {
                   <div className="text-sm text-gray-500">{testimonial.role}</div>
                   <div className="text-sm text-blue-600">{testimonial.company}</div>
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
@@ -205,12 +329,20 @@ function App() {
               Join the future of insurance with our AI-powered platform. Get started today and see the difference.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <button className="bg-white text-blue-600 px-8 py-4 rounded-lg text-lg font-semibold hover:bg-gray-50 transition-colors w-full sm:w-auto">
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="bg-white text-blue-600 px-8 py-4 rounded-lg text-lg font-semibold hover:bg-gray-50 transition-colors w-full sm:w-auto"
+              >
                 Schedule a Demo
-              </button>
-              <button className="border border-white text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-blue-700 transition-colors w-full sm:w-auto">
+              </motion.button>
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="border border-white text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-blue-700 transition-colors w-full sm:w-auto"
+              >
                 Contact Sales
-              </button>
+              </motion.button>
             </div>
           </div>
         </div>
@@ -242,37 +374,4 @@ function App() {
                 title: "Resources",
                 links: ["Blog", "Documentation", "Support", "Contact"]
               }
-            ].map((column, index) => (
-              <div key={index}>
-                <h3 className="text-white font-semibold mb-4">{column.title}</h3>
-                <ul className="space-y-3">
-                  {column.links.map((link, i) => (
-                    <li key={i}>
-                      <a href="#" className="hover:text-white transition-colors">
-                        {link}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
-          <div className="border-t border-gray-800 pt-8">
-            <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-              <div className="text-sm">
-                © {new Date().getFullYear()} SBI Life Insurance. All rights reserved.
-              </div>
-              <div className="flex gap-6 text-sm">
-                <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
-                <a href="#" className="hover:text-white transition-colors">Terms of Service</a>
-                <a href="#" className="hover:text-white transition-colors">Cookie Settings</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </footer>
-    </div>
-  );
-}
-
-export default App;
+            ].map((column
